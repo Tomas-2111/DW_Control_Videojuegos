@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="localhost.BD_Control_Videojuegos"
+  DTS:DTSID="{287B357B-AD17-4096-9F8F-D852A9DCCAB0}"
+  DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=localhost;Initial Catalog=BD_Control_Videojuegos;Integrated Security=True;Encrypt=False;Application Name=SSIS-{287B357B-AD17-4096-9F8F-D852A9DCCAB0}localhost.BD_Control_Videojuegos;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
