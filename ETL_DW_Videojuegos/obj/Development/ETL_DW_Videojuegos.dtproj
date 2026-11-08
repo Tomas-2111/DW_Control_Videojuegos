@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">HUAWEID15-TOMAS</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA6d0h60EvgkW8r9nvRPZJdwAAAAACAAAAAAAQZgAAAAEAACAAAADS6HyI/FUXgd3QAyponOaX6+kMyNBzllB+6omZ75dg0AAAAAAOgAAAAAIAACAAAACMHKgmWkeQaiKHgbsX91wqA5SKDOaGfis4X5XKHWmduZAAAACuCrxGy5hzG4/8S7z8HfQ3A68Znuv7Qh6ebcVlCpIy842p0ZLsoO5oeDJifbo93u4uUMZkEah7JhBLeg0Lsn0SmY/pn48UJSABXv8XhXNzJ8jL1fPtQhOqQZk9W5Mz9e7qy3k9M5/GzNm+z3U1KhmE6MzmxjONY15dnCaGBeMhRquJghZtT9rFeEYONinIVWNAAAAALSGtPwGBZ+FJGkcVDk+UoBI0hPPO22OTP2yvq9XT0qA63/xq/c4GDOXKeCqAa1Z3FC+zXO+ZE3Phu7/XoVbY0Q==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA9bTBwJ49LUG9HF14StvFMAAAAAACAAAAAAAQZgAAAAEAACAAAABewmi2TmVAMSzLKhV4xB1HwwM3KPgomLMnvpMp6J8mpgAAAAAOgAAAAAIAACAAAAAuqR6VplkiHW0pdNpZBGGV9q2OU7JYVLQlCq0vX+ZLopAAAADRjGtY3Nfj4984/yqFn6C7emxzfvilh9NQWGtWIW3X5TFY7LCpynKDObVY1Jcl0jvu0hUGnVgTKPVk3MYxZUZsb7Inh/D/sXtPKk5/SJZQU1pevrpsp1PDlWZLyNBdIK6KTgYHVV9Gve5OQG66+ZPp3XmqJywQ4RrO71G2LMS6kEYo4cer95Cx0ReP9ahgZnhAAAAA/WyIPiXBPWu/vy5RLlGDkv20I08KeleCgJmRJH+QXDXC/vY00PG3w2dxeeqa4o8Ifovl1qZvuRQmOa7Cz/OBsQ==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -183,7 +183,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Huawei\OneDrive - Universidad Fidélitas\Escritorio\Ing Sistemas-Fidélitas\III Cuatrimestre 2026\Data Warehouse\Proyecto\DW\ControlProveedores.xlsx;Extended Properties="EXCEL 12.0 XML;HDR=YES";</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">Provider=Microsoft.ACE.OLEDB.16.0;Data Source=C:\Users\Huawei\OneDrive - Universidad Fidélitas\Escritorio\Ing Sistemas-Fidélitas\III Cuatrimestre 2026\Data Warehouse\Proyecto\DW_Control_Videojuegos\ControlProveedores.xlsx;Extended Properties="EXCEL 12.0 XML;HDR=YES";</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -198,7 +198,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">C:\Users\Huawei\OneDrive - Universidad Fidélitas\Escritorio\Ing Sistemas-Fidélitas\III Cuatrimestre 2026\Data Warehouse\Proyecto\DW\ControlProveedores.xlsx</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">C:\Users\Huawei\OneDrive - Universidad Fidélitas\Escritorio\Ing Sistemas-Fidélitas\III Cuatrimestre 2026\Data Warehouse\Proyecto\DW_Control_Videojuegos\ControlProveedores.xlsx</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -271,7 +271,7 @@
                 <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                 <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="Value">C:\Users\Huawei\OneDrive - Universidad Fidélitas\Escritorio\Ing Sistemas-Fidélitas\III Cuatrimestre 2026\Data Warehouse\Proyecto\DW\ControlProveedores.xlsx</SSIS:Property>
+                <SSIS:Property SSIS:Name="Value">C:\Users\Huawei\OneDrive - Universidad Fidélitas\Escritorio\Ing Sistemas-Fidélitas\III Cuatrimestre 2026\Data Warehouse\Proyecto\DW_Control_Videojuegos\ControlProveedores.xlsx</SSIS:Property>
                 <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
               </SSIS:Properties>
             </SSIS:Parameter>
@@ -415,10 +415,10 @@
                 <SSIS:Property SSIS:Name="Name">Package</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">23</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">57</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{C0E46A3C-0EA1-4DBB-B367-66176405D63B}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{CEF60F9C-2E7F-4240-99F1-90225F4C36E9}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>

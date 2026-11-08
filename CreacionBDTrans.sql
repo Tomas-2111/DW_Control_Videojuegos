@@ -61,7 +61,7 @@ CREATE TABLE Diagnostico (
     ID_Ticket INT NOT NULL,
     Categoria_Falla VARCHAR(100) NOT NULL,
     Detalle_Falla VARCHAR(MAX) NOT NULL,
-    Mantenimiento_Preventivo BIT DEFAULT 0, -- Booleano (0 = False, 1 = True)
+    Mantenimiento_Preventivo BIT DEFAULT 0, 
     FOREIGN KEY (ID_Ticket) REFERENCES Ticket(ID_Ticket)
 );
 
@@ -76,7 +76,7 @@ CREATE TABLE Ticket_Repuesto (
 );
 GO
 
--- INSERCION DE DATOS DE PRUEBA (SIN GUIONES)
+
 
 -- Clientes
 INSERT INTO Cliente (ID_Cliente, Nombre, Apellido, Correo, Telefono, Fecha_Registro) VALUES
