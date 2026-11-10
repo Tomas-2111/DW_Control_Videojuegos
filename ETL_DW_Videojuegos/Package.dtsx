@@ -11,8 +11,8 @@
   DTS:LocaleID="5130"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="78"
-  DTS:VersionGUID="{C9EB5BC6-3851-4DFE-868C-F02D9D3F0B40}">
+  DTS:VersionBuild="82"
+  DTS:VersionGUID="{83B40D04-8B61-420D-8AF8-6463C743AB72}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -7236,8 +7236,7 @@ FROM     Tecnico</property>
                       lineageId="Package\Poblar H_Compras\Excel Source.Outputs[Excel Source Output].Columns[Cantidad]" />
                     <inputColumn
                       refId="Package\Poblar H_Compras\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Monto_Total]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
+                      cachedDataType="r8"
                       cachedName="Monto_Total"
                       externalMetadataColumnId="Package\Poblar H_Compras\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Monto_Total_Compra]"
                       lineageId="Package\Poblar H_Compras\Excel Source.Outputs[Excel Source Output].Columns[Monto_Total]" />
@@ -7430,7 +7429,9 @@ FROM     Tecnico</property>
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT ID_Compra, ID_Proveedor, ID_Repuesto, Fecha_Compra, Cantidad, Costo_Unitario, Monto_Total
+FROM     `Compras$`
+WHERE  (ID_Compra IS NOT NULL)</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -7439,7 +7440,7 @@ FROM     Tecnico</property>
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  typeConverter="AccessMode">2</property>
                 <property
                   dataType="System.String"
                   description="The mapping from parameters in the SQL command to variables."
@@ -7505,21 +7506,19 @@ FROM     Tecnico</property>
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Poblar H_Compras\Excel Source.Outputs[Excel Source Output].Columns[Costo_Unitario]"
-                      dataType="wstr"
+                      dataType="r8"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Poblar H_Compras\Excel Source.Outputs[Excel Source Output].ExternalColumns[Costo_Unitario]"
-                      length="255"
                       lineageId="Package\Poblar H_Compras\Excel Source.Outputs[Excel Source Output].Columns[Costo_Unitario]"
                       name="Costo_Unitario"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
                       refId="Package\Poblar H_Compras\Excel Source.Outputs[Excel Source Output].Columns[Monto_Total]"
-                      dataType="wstr"
+                      dataType="r8"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
                       externalMetadataColumnId="Package\Poblar H_Compras\Excel Source.Outputs[Excel Source Output].ExternalColumns[Monto_Total]"
-                      length="255"
                       lineageId="Package\Poblar H_Compras\Excel Source.Outputs[Excel Source Output].Columns[Monto_Total]"
                       name="Monto_Total"
                       truncationRowDisposition="FailComponent" />
@@ -7548,13 +7547,11 @@ FROM     Tecnico</property>
                       name="Cantidad" />
                     <externalMetadataColumn
                       refId="Package\Poblar H_Compras\Excel Source.Outputs[Excel Source Output].ExternalColumns[Costo_Unitario]"
-                      dataType="wstr"
-                      length="255"
+                      dataType="r8"
                       name="Costo_Unitario" />
                     <externalMetadataColumn
                       refId="Package\Poblar H_Compras\Excel Source.Outputs[Excel Source Output].ExternalColumns[Monto_Total]"
-                      dataType="wstr"
-                      length="255"
+                      dataType="r8"
                       name="Monto_Total" />
                   </externalMetadataColumns>
                 </output>
@@ -7590,14 +7587,12 @@ FROM     Tecnico</property>
                       name="Cantidad" />
                     <outputColumn
                       refId="Package\Poblar H_Compras\Excel Source.Outputs[Excel Source Error Output].Columns[Costo_Unitario]"
-                      dataType="wstr"
-                      length="255"
+                      dataType="r8"
                       lineageId="Package\Poblar H_Compras\Excel Source.Outputs[Excel Source Error Output].Columns[Costo_Unitario]"
                       name="Costo_Unitario" />
                     <outputColumn
                       refId="Package\Poblar H_Compras\Excel Source.Outputs[Excel Source Error Output].Columns[Monto_Total]"
-                      dataType="wstr"
-                      length="255"
+                      dataType="r8"
                       lineageId="Package\Poblar H_Compras\Excel Source.Outputs[Excel Source Error Output].Columns[Monto_Total]"
                       name="Monto_Total" />
                     <outputColumn
@@ -7629,6 +7624,978 @@ FROM     Tecnico</property>
               endId="Package\Poblar H_Compras\Derived Column.Inputs[Derived Column Input]"
               name="Excel Source Output"
               startId="Package\Poblar H_Compras\Excel Source.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Poblar H_Consumo_Repuestos"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{bf216de4-c68d-4ebd-9238-5b5445206b38}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Poblar H_Consumo_Repuestos"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="ADO NET Destination"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."H_Consumo_Repuestos"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Connections[IDbConnection]"
+                  connectionManagerID="{16B2ACB4-EFE7-4591-A4E3-07826E88D533}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.DW_Videojuegos]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Cantidad_Consumida]"
+                      cachedDataType="i4"
+                      cachedName="Cantidad_Consumida"
+                      externalMetadataColumnId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Cantidad_Consumida]"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Cantidad_Consumida]" />
+                    <inputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Id_Fecha]"
+                      cachedDataType="i4"
+                      cachedName="Id_Fecha"
+                      externalMetadataColumnId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Id_Fecha]"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Lookup.Outputs[Lookup Match Output].Columns[Id_Fecha]" />
+                    <inputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Id_Equipo]"
+                      cachedDataType="i4"
+                      cachedName="Id_Equipo"
+                      externalMetadataColumnId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Id_Equipo]"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Lookup 1.Outputs[Lookup Match Output].Columns[Id_Equipo]" />
+                    <inputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Id_Repuesto]"
+                      cachedDataType="i4"
+                      cachedName="Id_Repuesto"
+                      externalMetadataColumnId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Id_Repuesto]"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Lookup 2.Outputs[Lookup Match Output].Columns[Id_Repuesto]" />
+                    <inputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Id_Ticket_NK]"
+                      cachedDataType="i4"
+                      cachedName="Id_Ticket_NK"
+                      externalMetadataColumnId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Id_Ticket]"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Id_Ticket_NK]" />
+                    <inputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].Columns[Costo_Total_Calculado]"
+                      cachedDataType="numeric"
+                      cachedName="Costo_Total_Calculado"
+                      cachedPrecision="21"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Costo_Total_Consumo]"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Costo_Total_Calculado]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Id_Consumo]"
+                      dataType="i4"
+                      name="Id_Consumo" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Id_Fecha]"
+                      dataType="i4"
+                      name="Id_Fecha" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Id_Equipo]"
+                      dataType="i4"
+                      name="Id_Equipo" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Id_Repuesto]"
+                      dataType="i4"
+                      name="Id_Repuesto" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Id_Ticket]"
+                      dataType="i4"
+                      name="Id_Ticket" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Cantidad_Consumida]"
+                      dataType="i4"
+                      name="Cantidad_Consumida" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input].ExternalColumns[Costo_Total_Consumo]"
+                      dataType="numeric"
+                      name="Costo_Total_Consumo"
+                      precision="10"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Poblar H_Consumo_Repuestos\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Poblar H_Consumo_Repuestos\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Derived Column.Inputs[Derived Column Input].Columns[Fecha_Ingreso]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Fecha_Ingreso"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Fecha_Ingreso]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Poblar H_Consumo_Repuestos\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Poblar H_Consumo_Repuestos\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Derived Column.Outputs[Derived Column Output].Columns[Fecha_Ingreso_DW]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Derived Column.Outputs[Derived Column Output].Columns[Fecha_Ingreso_DW]"
+                      name="Fecha_Ingreso_DW"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[YEAR](#{Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Fecha_Ingreso]}) * 100 + [MONTH](#{Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Fecha_Ingreso]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">YEAR(Fecha_Ingreso) * 100 + MONTH(Fecha_Ingreso)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Poblar H_Consumo_Repuestos\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Poblar H_Consumo_Repuestos\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Poblar H_Consumo_Repuestos\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[D_Tiempo]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[D_Tiempo]) [refTable]
+where [refTable].[Id_Fecha] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Id_Fecha" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Anio" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Mes" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Nombre_Mes" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Poblar H_Consumo_Repuestos\Derived Column.Outputs[Derived Column Output].Columns[Fecha_Ingreso_DW]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar H_Consumo_Repuestos\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="{E49063D8-FC9F-4772-ADAA-45653F79BECD}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.DW_Videojuegos 1]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Poblar H_Consumo_Repuestos\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Lookup.Inputs[Lookup Input].Columns[Fecha_Ingreso_DW]"
+                      cachedDataType="i4"
+                      cachedName="Fecha_Ingreso_DW"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Derived Column.Outputs[Derived Column Output].Columns[Fecha_Ingreso_DW]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Id_Fecha</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Poblar H_Consumo_Repuestos\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Poblar H_Consumo_Repuestos\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Lookup.Outputs[Lookup Match Output].Columns[Id_Fecha]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Lookup.Outputs[Lookup Match Output].Columns[Id_Fecha]"
+                      name="Id_Fecha"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Id_Fecha</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Poblar H_Consumo_Repuestos\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Poblar H_Consumo_Repuestos\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Poblar H_Consumo_Repuestos\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Poblar H_Consumo_Repuestos\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Poblar H_Consumo_Repuestos\Lookup 1"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup 1"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[D_Equipo]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[D_Equipo]) [refTable]
+where [refTable].[Id_Equipo_NK] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Id_Equipo" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Id_Equipo_NK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Tipo_Dispositivo" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Modelo" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Numero_Serie" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_Equipo_NK]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar H_Consumo_Repuestos\Lookup 1.Connections[OleDbConnection]"
+                  connectionManagerID="{E49063D8-FC9F-4772-ADAA-45653F79BECD}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.DW_Videojuegos 1]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Poblar H_Consumo_Repuestos\Lookup 1.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Lookup 1.Inputs[Lookup Input].Columns[ID_Equipo_NK]"
+                      cachedDataType="i4"
+                      cachedName="ID_Equipo_NK"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_Equipo_NK]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Id_Equipo_NK</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Poblar H_Consumo_Repuestos\Lookup 1.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Poblar H_Consumo_Repuestos\Lookup 1.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Lookup 1.Outputs[Lookup Match Output].Columns[Id_Equipo]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Lookup 1.Outputs[Lookup Match Output].Columns[Id_Equipo]"
+                      name="Id_Equipo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Id_Equipo</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Poblar H_Consumo_Repuestos\Lookup 1.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Poblar H_Consumo_Repuestos\Lookup 1.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Poblar H_Consumo_Repuestos\Lookup 1.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Poblar H_Consumo_Repuestos\Lookup 1.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Lookup 1.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Lookup 1.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Lookup 1.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Lookup 1.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Poblar H_Consumo_Repuestos\Lookup 2"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup 2"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[D_Repuesto]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[D_Repuesto]) [refTable]
+where [refTable].[Id_Repuesto_NK] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Id_Repuesto" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Id_Repuesto_NK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Nombre_Repuesto" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Costo_Unitario" dataType="DT_NUMERIC" length="0" precision="10" scale="2" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_Repuesto_NK]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar H_Consumo_Repuestos\Lookup 2.Connections[OleDbConnection]"
+                  connectionManagerID="{E49063D8-FC9F-4772-ADAA-45653F79BECD}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.DW_Videojuegos 1]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Poblar H_Consumo_Repuestos\Lookup 2.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Lookup 2.Inputs[Lookup Input].Columns[ID_Repuesto_NK]"
+                      cachedDataType="i4"
+                      cachedName="ID_Repuesto_NK"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_Repuesto_NK]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Id_Repuesto_NK</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Poblar H_Consumo_Repuestos\Lookup 2.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Poblar H_Consumo_Repuestos\Lookup 2.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Lookup 2.Outputs[Lookup Match Output].Columns[Id_Repuesto]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Lookup 2.Outputs[Lookup Match Output].Columns[Id_Repuesto]"
+                      name="Id_Repuesto"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Id_Repuesto</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Poblar H_Consumo_Repuestos\Lookup 2.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Poblar H_Consumo_Repuestos\Lookup 2.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Poblar H_Consumo_Repuestos\Lookup 2.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Poblar H_Consumo_Repuestos\Lookup 2.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Lookup 2.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Lookup 2.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Lookup 2.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Lookup 2.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; Todos los derechos reservados; http://www.microsoft.com/sql/support;4"
+              description="Consume datos de SQL Server, OLE DB, ODBC u Oracle mediante el correspondiente proveedor de datos de .NET Framework. Se usa una instrucción Transact-SQL para definir el conjunto de resultados. Por ejemplo, se extraen datos de SQL Server con el proveedor de datos de .NET Framework para SQL Server."
+              name="Origen de ADO NET"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Especifica la instrucción SQL utilizada por el componente para extraer datos."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    T.Fecha_Ingreso,
+    T.ID_Equipo AS ID_Equipo_NK,
+    TR.ID_Repuesto AS ID_Repuesto_NK,
+    T.ID_Ticket AS Id_Ticket_NK,
+    TR.Cantidad AS Cantidad_Consumida,
+    TR.Costo_Aplicado,
+    (TR.Cantidad * TR.Costo_Aplicado) AS Costo_Total_Calculado
+FROM Ticket_Repuesto TR
+INNER JOIN Ticket T ON TR.ID_Ticket = T.ID_Ticket</property>
+                <property
+                  dataType="System.Int32"
+                  description="Número de segundos antes de que se agote el tiempo de espera de un comando. Un valor de 0 indica un tiempo de espera infinito."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica si se debe permitir que columnas externas que no sean de cadenas se conviertan implícitamente en cadenas en las columnas de salida."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="Nombre de la tabla de la base de datos de origen."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especificar el modo de recuperar información de columnas externas"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Connections[IDbConnection]"
+                  connectionManagerID="{287B357B-AD17-4096-9F8F-D852A9DCCAB0}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.BD_Control_Videojuegos]"
+                  description="Administrador de conexiones administrado"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET]"
+                  name="Salida de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Fecha_Ingreso]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Fecha_Ingreso]"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Fecha_Ingreso]"
+                      name="Fecha_Ingreso"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_Equipo_NK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_Equipo_NK]"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_Equipo_NK]"
+                      name="ID_Equipo_NK"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_Repuesto_NK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_Repuesto_NK]"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[ID_Repuesto_NK]"
+                      name="ID_Repuesto_NK"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Id_Ticket_NK]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Id_Ticket_NK]"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Id_Ticket_NK]"
+                      name="Id_Ticket_NK"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Cantidad_Consumida]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Cantidad_Consumida]"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Cantidad_Consumida]"
+                      name="Cantidad_Consumida"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Costo_Aplicado]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Costo_Aplicado]"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Costo_Aplicado]"
+                      name="Costo_Aplicado"
+                      precision="10"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Costo_Total_Calculado]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversión"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Costo_Total_Calculado]"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].Columns[Costo_Total_Calculado]"
+                      name="Costo_Total_Calculado"
+                      precision="21"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Fecha_Ingreso]"
+                      dataType="dbTimeStamp"
+                      name="Fecha_Ingreso" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_Equipo_NK]"
+                      dataType="i4"
+                      name="ID_Equipo_NK" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[ID_Repuesto_NK]"
+                      dataType="i4"
+                      name="ID_Repuesto_NK" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Id_Ticket_NK]"
+                      dataType="i4"
+                      name="Id_Ticket_NK" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Cantidad_Consumida]"
+                      dataType="i4"
+                      name="Cantidad_Consumida" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Costo_Aplicado]"
+                      dataType="numeric"
+                      name="Costo_Aplicado"
+                      precision="10"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET].ExternalColumns[Costo_Total_Calculado]"
+                      dataType="numeric"
+                      name="Costo_Total_Calculado"
+                      precision="21"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET]"
+                  isErrorOut="true"
+                  name="Salida de error de origen de ADO NET">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Fecha_Ingreso]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Fecha_Ingreso]"
+                      name="Fecha_Ingreso" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_Equipo_NK]"
+                      dataType="i4"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_Equipo_NK]"
+                      name="ID_Equipo_NK" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_Repuesto_NK]"
+                      dataType="i4"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ID_Repuesto_NK]"
+                      name="ID_Repuesto_NK" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Id_Ticket_NK]"
+                      dataType="i4"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Id_Ticket_NK]"
+                      name="Id_Ticket_NK" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Cantidad_Consumida]"
+                      dataType="i4"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Cantidad_Consumida]"
+                      name="Cantidad_Consumida" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Costo_Aplicado]"
+                      dataType="numeric"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Costo_Aplicado]"
+                      name="Costo_Aplicado"
+                      precision="10"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Costo_Total_Calculado]"
+                      dataType="numeric"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[Costo_Total_Calculado]"
+                      name="Costo_Total_Calculado"
+                      precision="21"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de error de origen de ADO NET].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Poblar H_Consumo_Repuestos.Paths[Derived Column Output]"
+              endId="Package\Poblar H_Consumo_Repuestos\Lookup.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\Poblar H_Consumo_Repuestos\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Poblar H_Consumo_Repuestos.Paths[Lookup Match Output]"
+              endId="Package\Poblar H_Consumo_Repuestos\Lookup 1.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Poblar H_Consumo_Repuestos\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Poblar H_Consumo_Repuestos.Paths[Lookup Match Output1]"
+              endId="Package\Poblar H_Consumo_Repuestos\Lookup 2.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Poblar H_Consumo_Repuestos\Lookup 1.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Poblar H_Consumo_Repuestos.Paths[Lookup Match Output2]"
+              endId="Package\Poblar H_Consumo_Repuestos\ADO NET Destination.Inputs[ADO NET Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\Poblar H_Consumo_Repuestos\Lookup 2.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Poblar H_Consumo_Repuestos.Paths[Salida de origen de ADO NET]"
+              endId="Package\Poblar H_Consumo_Repuestos\Derived Column.Inputs[Derived Column Input]"
+              name="Salida de origen de ADO NET"
+              startId="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET.Outputs[Salida de origen de ADO NET]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -7683,45 +8650,53 @@ FROM     Tecnico</property>
       DTS:LogicalAnd="True"
       DTS:ObjectName="Restricción 4"
       DTS:To="Package\Poblar D_Proveedor" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{252325A1-3609-4BAB-8E79-D68198942AE7}"
+      DTS:From="Package\Poblar H_Compras"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 5"
+      DTS:To="Package\Poblar H_Consumo_Repuestos" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
-<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
-<!--If you manually edit this section and make a mistake, you can delete it. -->
-<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
 <Objects
   Version="8">
-  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
   <Package
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="157,42"
+          Size="156.8,41.6"
           Id="Package\Poblar D_Cliente"
           TopLeft="262.499985657633,64.9999995479982" />
         <NodeLayout
-          Size="179,42"
+          Size="179.2,41.6"
           Id="Package\Poblar D_Diagnostico"
           TopLeft="509.99997213483,297.266664599511" />
         <NodeLayout
-          Size="157,42"
+          Size="156.8,41.6"
           Id="Package\Poblar D_Equipo"
           TopLeft="265.833318808841,188.066665358874" />
         <NodeLayout
-          Size="173,42"
+          Size="172.8,41.6"
           Id="Package\Poblar D_Proveedor"
           TopLeft="516.499971998236,74.7999994937579" />
         <NodeLayout
-          Size="169,42"
+          Size="168.8,41.6"
           Id="Package\Poblar D_Repuesto"
           TopLeft="516.666638437246,192.399998662074" />
         <NodeLayout
-          Size="161,42"
+          Size="160.8,41.6"
           Id="Package\Poblar D_Tecnico"
           TopLeft="265.833318808841,296.399997938871" />
         <NodeLayout
-          Size="172,42"
+          Size="172,41.6"
           Id="Package\Poblar H_Compras"
           TopLeft="765,75" />
         <EdgeLayout
@@ -7856,6 +8831,44 @@ FROM     Tecnico</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="224.8,41.6"
+          Id="Package\Poblar H_Consumo_Repuestos"
+          TopLeft="752.261863660128,181.95238039362" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 5]"
+          TopLeft="851,116.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13.6618636601283,65.3523803936201"
+              Start="0,0"
+              End="13.6618636601283,57.8523803936201">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.6761901968101" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.6761901968101"
+                    Point2="0,32.6761901968101"
+                    Point3="4,32.6761901968101" />
+                  <mssgle:LineSegment
+                    End="9.66186366012835,32.6761901968101" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9.66186366012835,32.6761901968101"
+                    Point2="13.6618636601283,32.6761901968101"
+                    Point3="13.6618636601283,36.6761901968101" />
+                  <mssgle:LineSegment
+                    End="13.6618636601283,57.8523803936201" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -7923,7 +8936,9 @@ FROM     Tecnico</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7981,7 +8996,9 @@ FROM     Tecnico</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -8015,7 +9032,9 @@ FROM     Tecnico</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -8049,7 +9068,9 @@ FROM     Tecnico</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -8083,7 +9104,9 @@ FROM     Tecnico</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -8647,35 +9670,35 @@ FROM     Tecnico</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="156,42"
+          Size="156,41.6"
           Id="Package\Poblar D_Proveedor\Data Conversion"
           TopLeft="127.999998092651,154.99999769032" />
         <NodeLayout
-          Size="140,42"
+          Size="140,41.6"
           Id="Package\Poblar D_Proveedor\D_Proveedor"
           TopLeft="497.333304332363,69.8666662523482" />
         <NodeLayout
-          Size="130,42"
+          Size="129.6,41.6"
           Id="Package\Poblar D_Proveedor\Merge Join"
           TopLeft="402.999993994832,336.999994978309" />
         <NodeLayout
-          Size="106,42"
+          Size="105.6,41.6"
           Id="Package\Poblar D_Proveedor\Sort 1"
           TopLeft="537.499970632296,186.333332037595" />
         <NodeLayout
-          Size="140,42"
+          Size="140,41.6"
           Id="Package\Poblar D_Proveedor\Excel Source"
           TopLeft="126.999998107553,59.9999991059303" />
         <NodeLayout
-          Size="177,42"
+          Size="176.8,41.6"
           Id="Package\Poblar D_Proveedor\Destino de ADO NET"
           TopLeft="1056.83329092877,307.933331589367" />
         <NodeLayout
-          Size="98,42"
+          Size="97.6,41.6"
           Id="Package\Poblar D_Proveedor\Sort"
           TopLeft="163.166655725075,254.066664375398" />
         <NodeLayout
-          Size="154,42"
+          Size="153.6,41.6"
           Id="Package\Poblar D_Proveedor\Conditional Split"
           TopLeft="706.666639182303,343.866664442353" />
         <EdgeLayout
@@ -9470,19 +10493,19 @@ FROM     Tecnico</property>
     design-time-name="Package\Poblar H_Compras">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="144,42"
-          Id="Package\Poblar H_Compras\Excel Source"
-          TopLeft="116,75" />
+          Size="158.4,41.6"
+          Id="Package\Poblar H_Compras\Derived Column"
+          TopLeft="101,179" />
         <NodeLayout
-          Size="186,42"
+          Size="185.6,41.6"
           Id="Package\Poblar H_Compras\ADO NET Destination"
           TopLeft="93,342" />
         <NodeLayout
-          Size="158,42"
-          Id="Package\Poblar H_Compras\Derived Column"
-          TopLeft="101,179" />
+          Size="144,41.6"
+          Id="Package\Poblar H_Compras\Excel Source"
+          TopLeft="116,75" />
         <EdgeLayout
           Id="Package\Poblar H_Compras.Paths[Excel Source Output]"
           TopLeft="188,117">
@@ -9514,7 +10537,9 @@ FROM     Tecnico</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -9536,12 +10561,22 @@ FROM     Tecnico</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar H_Compras\ADO NET Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Poblar H_Compras\Excel Source">
     <Properties>
@@ -9555,9 +10590,282 @@ FROM     Tecnico</property>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Poblar H_Consumo_Repuestos">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="158.4,41.6"
+          Id="Package\Poblar H_Consumo_Repuestos\Derived Column"
+          TopLeft="101,179" />
+        <NodeLayout
+          Size="185.6,41.6"
+          Id="Package\Poblar H_Consumo_Repuestos\ADO NET Destination"
+          TopLeft="732.285679356685,311.047619262858" />
+        <NodeLayout
+          Size="172.8,41.6"
+          Id="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET"
+          TopLeft="115.47618416685,78.3809520107413" />
+        <EdgeLayout
+          Id="Package\Poblar H_Consumo_Repuestos.Paths[Salida de origen de ADO NET]"
+          TopLeft="201.87618416685,119.980952010741">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-21.6761841668499,59.0190479892587"
+              Start="0,0"
+              End="-21.6761841668499,51.5190479892587">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5095239946293" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25.5095239946293"
+                    Point2="0,29.5095239946293"
+                    Point3="-4,29.5095239946293" />
+                  <mssgle:LineSegment
+                    End="-17.6761841668499,29.5095239946293" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-17.6761841668499,29.5095239946293"
+                    Point2="-21.6761841668499,29.5095239946293"
+                    Point3="-21.6761841668499,33.5095239946293" />
+                  <mssgle:LineSegment
+                    End="-21.6761841668499,51.5190479892587" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="112.8,41.6"
+          Id="Package\Poblar H_Consumo_Repuestos\Lookup"
+          TopLeft="339.285695747961,226.285713045938" />
+        <EdgeLayout
+          Id="Package\Poblar H_Consumo_Repuestos.Paths[Derived Column Output]"
+          TopLeft="259.4,199.8">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="79.8856957479611,47.2857130459377"
+              Start="0,0"
+              End="72.3856957479611,47.2857130459377">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="35.9428478739805,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="35.9428478739805,0"
+                    Point2="39.9428478739805,0"
+                    Point3="39.9428478739805,4" />
+                  <mssgle:LineSegment
+                    End="39.9428478739805,43.2857130459377" />
+                  <mssgle:CubicBezierSegment
+                    Point1="39.9428478739805,43.2857130459377"
+                    Point2="39.9428478739805,47.2857130459377"
+                    Point3="43.9428478739805,47.2857130459377" />
+                  <mssgle:LineSegment
+                    End="72.3856957479611,47.2857130459377" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="120.8,41.6"
+          Id="Package\Poblar H_Consumo_Repuestos\Lookup 1"
+          TopLeft="541.666637071306,228.761903504909" />
+        <EdgeLayout
+          Id="Package\Poblar H_Consumo_Repuestos.Paths[Lookup Match Output]"
+          TopLeft="452.085695747961,248.323808275423">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="89.5809413233452,0"
+              Start="0,0"
+              End="82.0809413233452,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="82.0809413233452,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-7.1509160570774,5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="120.8,41.6"
+          Id="Package\Poblar H_Consumo_Repuestos\Lookup 2"
+          TopLeft="598.809491092015,111.619047240227" />
+        <EdgeLayout
+          Id="Package\Poblar H_Consumo_Repuestos.Paths[Lookup Match Output1]"
+          TopLeft="602.066637071306,228.761903504909">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="57.1428540207091,-75.542856264682"
+              Start="0,0"
+              End="57.1428540207091,-68.042856264682">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-33.771428132341" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-33.771428132341"
+                    Point2="0,-37.771428132341"
+                    Point3="4,-37.771428132341" />
+                  <mssgle:LineSegment
+                    End="53.1428540207091,-37.771428132341" />
+                  <mssgle:CubicBezierSegment
+                    Point1="53.1428540207091,-37.771428132341"
+                    Point2="57.1428540207091,-37.771428132341"
+                    Point3="57.1428540207091,-41.771428132341" />
+                  <mssgle:LineSegment
+                    End="57.1428540207091,-68.042856264682" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-19.6199597083954,-32.771428132341,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Poblar H_Consumo_Repuestos.Paths[Lookup Match Output2]"
+          TopLeft="678.009491092015,153.219047240227">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="147.076188264669,157.828572022631"
+              Start="0,0"
+              End="147.076188264669,150.328572022631">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.369299962171" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,60.369299962171"
+                    Point2="0,64.369299962171"
+                    Point3="4,64.369299962171" />
+                  <mssgle:LineSegment
+                    End="143.076188264669,64.369299962171" />
+                  <mssgle:CubicBezierSegment
+                    Point1="143.076188264669,64.369299962171"
+                    Point2="147.076188264669,64.369299962171"
+                    Point3="147.076188264669,68.369299962171" />
+                  <mssgle:LineSegment
+                    End="147.076188264669,150.328572022631" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="25.3467074135845,69.369299962171,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Poblar H_Compras\ADO NET Destination">
+    design-time-name="Package\Poblar H_Consumo_Repuestos\ADO NET Destination">
     <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar H_Consumo_Repuestos\Origen de ADO NET">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar H_Consumo_Repuestos\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[D_Tiempo]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar H_Consumo_Repuestos\Lookup 1">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[D_Equipo]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Poblar H_Consumo_Repuestos\Lookup 2">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[D_Repuesto]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
